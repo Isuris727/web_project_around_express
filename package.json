@@ -1,0 +1,22 @@
+{
+  "name": "web_project_around_express",
+  "version": "1.0.0",
+  "description": "project sprint 15",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Isuris727/web_project_around_express.git"
+  },
+  "keywords": [
+    "express"
+  ],
+  "author": "Isuris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Isuris727/web_project_around_express/issues"
+  },
+  "homepage": "https://github.com/Isuris727/web_project_around_express#readme"
+}
