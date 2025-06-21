@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-// import validator -- revisar como se importa el validador
 
 const userSchema = new mongoose.Schema({
   name: {

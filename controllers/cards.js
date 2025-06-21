@@ -12,14 +12,12 @@ async function getCards(req, res, next) {
 async function createCard(req, res, next) {
   try {
     const { name, link } = req.body;
-    console.log("linea 15");
 
     const newCard = await Card.create({
       name,
       link,
       owner: req.user._id,
     });
-    console.log("linea 27");
     res.send(newCard);
   } catch (err) {
     console.log(err);
@@ -28,10 +26,14 @@ async function createCard(req, res, next) {
 }
 
 async function deleteCard(req, res, next) {
-  const { id } = req.body;
+  const { cardId } = req.params;
 
-  Card.findByIdAndDelete(id)
-    .then((card) => res.send("Carta eliminada:", card))
+  Card.findByIdAndDelete(cardId)
+    .then((cardId) =>
+      res.send({
+        message: `Carta ${cardId.name} con ID: ${cardId._id} eliminada correctamente`,
+      })
+    )
     .catch((err) => next());
 }
 

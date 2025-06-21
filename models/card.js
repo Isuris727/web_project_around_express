@@ -17,7 +17,8 @@ const cardSchema = new mongoose.Schema({
 
         return urlRegex.test(value);
       },
-      message: (props) => `${props.value} is not a url, please use a valid url`,
+      message: (props) =>
+        `${props.value} no es una URL, por favor usa una URL válida`,
     },
   },
   owner: {
