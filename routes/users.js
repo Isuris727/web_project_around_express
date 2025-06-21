@@ -39,9 +39,14 @@ async function getUserById(req, res) {
   }
   return res.status(404).send({ message: "ID de usuario no encontrado" });
 }
+// function createUser(req,res){
+
+// }
 
 routes.get("/", getUsers);
 
 routes.get("/:id", getUserById);
+
+// routes.post("/",)
 
 export default routes;
