@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   avatar: {
-    type: String, // revisar si es correcto
+    type: String,
     required: true,
     validate: {
       validator: function isUrl(value) {
@@ -24,7 +24,8 @@ const userSchema = new mongoose.Schema({
 
         return urlRegex.test(value);
       },
-      message: props`${props.value} is not a url, please use a valid url`,
+      message: (props) =>
+        `${props.value} no es una url, por favor usa una url valida`,
     },
   },
 });

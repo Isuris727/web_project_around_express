@@ -11,13 +11,13 @@ const cardSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator: function isUrl(value) {
+      validator: function (value) {
         const urlRegex =
           /https?:\/\/[w{3}.]?[\w|\W|\d]+[\.com|.net|.mx]\/?.{1,}/;
 
         return urlRegex.test(value);
       },
-      message: props`${props.value} is not a url, please use a valid url`,
+      message: (props) => `${props.value} is not a url, please use a valid url`,
     },
   },
   owner: {
