@@ -1,10 +1,16 @@
 import express from "express";
+import mongoose from "mongoose";
 import usersRoutes from "./routes/users.js";
 import cardsRoutes from "./routes/cards.js";
 
 const app = express();
 
 const { PORT = 3000 } = process.env;
+
+mongoose
+  .connect("mongodb://localhost:27017/aroundbd")
+  .then(() => console.log("conectado a la base de datos"))
+  .catch((err) => console.error(err));
 
 app.use("/users", usersRoutes);
 
