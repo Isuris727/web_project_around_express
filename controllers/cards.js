@@ -37,4 +37,34 @@ async function deleteCard(req, res, next) {
     .catch((err) => next());
 }
 
-export { getCards, createCard, deleteCard };
+async function likeCard(req, res, next) {
+  try {
+    const { cardId } = req.params;
+
+    const likedCard = await Card.findByIdAndUpdate(
+      cardId,
+      { $addToSet: { likes: req.user._id } },
+      { new: true }
+    );
+    res.send(likedCard);
+  } catch (err) {
+    next();
+  }
+}
+
+async function dislikeCard(req, res, next) {
+  try {
+    const { cardId } = req.params;
+
+    const dislikedCard = await Card.findByIdAndUpdate(
+      cardId,
+      { $pull: { likes: req.user._id } },
+      { new: true }
+    );
+    res.send(dislikedCard);
+  } catch (err) {
+    next();
+  }
+}
+
+export { getCards, createCard, deleteCard, likeCard, dislikeCard };

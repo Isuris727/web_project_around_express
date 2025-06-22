@@ -1,5 +1,11 @@
 import express from "express";
-import { getUsers, getUserById, createUser } from "../controllers/users.js";
+import {
+  getUsers,
+  getUserById,
+  createUser,
+  updateUserProfile,
+  updateUserAvatar,
+} from "../controllers/users.js";
 
 const { Router } = express;
 
@@ -10,5 +16,9 @@ routes.get("/", getUsers);
 routes.get("/:id", getUserById);
 
 routes.post("/", createUser);
+
+routes.patch("/me", updateUserProfile);
+
+routes.patch("/me/avatar", updateUserAvatar);
 
 export default routes;

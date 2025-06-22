@@ -28,4 +28,46 @@ async function createUser(req, res) {
   res.send(user);
 }
 
-export { getUsers, getUserById, createUser };
+async function updateUserProfile(req, res, next) {
+  const { name, about } = req.body;
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        name,
+        about,
+      },
+      { new: true, runValidators: true }
+    );
+
+    res.send({ message: "usuario actualizado correctamente", updatedUser });
+  } catch (err) {
+    next();
+  }
+}
+
+async function updateUserAvatar(req, res, next) {
+  const { avatar } = req.body;
+  try {
+    const updatedUserAvatar = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        avatar,
+      },
+      { new: true, runValidators: true }
+    );
+    res.send({
+      message: `Se actualizó el avatar. Nuevo link de avatar: ${updatedUserAvatar.avatar}`,
+    });
+  } catch (err) {
+    next();
+  }
+}
+
+export {
+  getUsers,
+  getUserById,
+  createUser,
+  updateUserProfile,
+  updateUserAvatar,
+};
