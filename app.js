@@ -34,6 +34,26 @@ app.use("/", function (req, res) {
   res.status(500).send({ message: "Recurso solicitado no encontrado" });
 });
 
+app.use((err, req, res, next) => {
+  if (err.name === "CastError") {
+    console.error(err);
+    return res
+      .status(400)
+      .send({ message: "Por favor introduce unos datos validos." });
+  }
+
+  if (err.name === "DocumentNotFoundError") {
+    console.error(err);
+    return res.status(404).send({
+      message:
+        "No se encontró el documento solicitado. Por favor verifica tu información",
+    });
+  }
+  res.status(500).send({
+    message: "Algo salió mal",
+  });
+});
+
 app.listen(PORT, () => {
   console.log("App ejecutandose en puerto: ", PORT);
 });
